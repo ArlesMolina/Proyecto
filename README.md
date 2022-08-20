@@ -10,6 +10,7 @@ Entrada :
   Palabras clava o descripcion del producto a buscar.
   Datos de pago
   Direccion de entrega 
+  
 Proceso:
   Pedir las Palabras clava o descripcion del producto a buscar.
   Comparar los datos ingrsados con la base de datos del catalogo donde se encuentra toda la información.
