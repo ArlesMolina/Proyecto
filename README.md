@@ -20,3 +20,35 @@ Proceso:
   
   Salidas
   Número de folio para el seguimiento de su paquete e igual funciona para recoger su paquete en tienda.
+# A partir de esta parte empieza mi codigo
+def MARCAAUTO(MA):
+    input("Ingresa la marca de tu auto:")
+    print("En esta función compara la marca del carro correspondiente, con la base de datos.")
+    
+def MODELOAUTO(MODELOAUTO):
+    input("Ingresa EL MODELO de tu auto:")
+    print ("En esta función se compara EL MODELO DEL AUTO del carro correspondiente, con la base de datos.")
+    
+def AÑOAUTO(AÑOAUTO):
+    input("Ingresa EL AÑO de tu auto:")
+    print ("En esta función se compara EL AÑO del carro correspondiente, con la base de datos.")
+    
+def TIPOAUTO(TIPOAUTO):
+    input("Ingresa tu TIPO DE auto:")
+    print ("En esta función se compara EL TIPO DE AUTO del carro correspondiente, con la base de datos.")
+     
+def TRANSMISIONAUTO(TRANSMISIONAUTO):
+    input("Ingresa la TRANSMISIÓN de tu auto:")
+    print ("En esta función se compara la TRANSMISION del carro correspondiente, con la base de datos.")
+    
+def main():
+    
+    MA= MARCAAUTO(MARCAAUTO)
+    MOA= MODELOAUTO(MODELOAUTO)
+    AA= AÑOAUTO(AÑOAUTO)
+    TT= TIPOAUTO(TIPOAUTO)
+    TA= TRANSMISIONAUTO(TRANSMISIONAUTO)
+    
+    
+
+main()
