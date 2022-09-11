@@ -1,5 +1,9 @@
 // Es necesario descargar la librería de PANDAS, el archivo de excel llamado "CATAL1, el archivo de python"//
+# Hasta el momento el programa es capaz de mostrarle al usuario la información del catálogo que desea, pero sin ningun tipo de filtro especifico.
+
+
 ¡App para catalogo, compra y venta.!
+
 Problema: Crear una aplicación para un negoción que requiere tener a dispocicion en una app el catalogo de sus productos y precios. Al mismo tiempo requiere que el usuario pueda realizar la compra en linea y esperar por el producto desde casa o poder pasar a tienda por el producto seleccionado.
 
 Contexto: El tema de este proyecto es debido a que varios negocios pequeños o antiguos, aun no cuentan con este servicio, así que a la vez este proyecto se me hace interesante el proceso de creacion de una app con esta descripción.
