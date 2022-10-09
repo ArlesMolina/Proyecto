@@ -1,0 +1,99 @@
+import pandas as pd 
+import openpyxl
+book= openpyxl.load_workbook('CATAL1.xlsx',data_only= True)
+hoja=book.active
+
+def MENU():
+    print("_Seleccione el número que desea visualisar de nuestro ctálogo_")
+    print("______________________________________________________________")
+    print("|1.  | Marcas de las Tapas en Catálogo                       |")
+    print("|2.  | Número internacional de las tapas                     |")
+    print("|3.  | Medida de Largo de la tapa                            |")
+    print("|4.  | Medida de Ancho de la tapa                            |")
+    print("|5.  | Tipo de transporte para el que aplica                 |")
+    print("|6.  | Rango de años del auto, para el cual aplica la tapa   |")
+    print("|7.  | Marca del auto para el que aplica la tapa             |")
+    print("|8.  | Precios de las tapas                                  |")
+    print("|9.  | Imagenes de las tapas                                 |")
+    print("|10. | Salir del programa                                    |")
+    print("--------------------------------------------------------------")
+
+
+def MARCATAPA(): 
+    #ESTE ES EL EJEMPLO MÁS CERCANO A LA LECTURA DEL EXCEL EN FORMA DE MATRIZ PARA SU PROXIMA COMPARACION, CON EL PRODUCTO BUSCADO POR EL USUARIO
+    celdas= hoja['A1':'A24']
+    marli=[]
+    for fila in celdas:
+        Marcas=[celdas.value for celdas in fila]
+        marli.append(Marcas)
+    
+    print(marli)
+
+
+def NUMINTERN(): 
+    EX1= pd.read_excel("CATAL1.xlsx", usecols=[1], na_values="missing")
+    print(EX1)
+
+def MEDIDALARGO():
+    EX2= pd.read_excel("CATAL1.xlsx", usecols=[2], na_values="missing")
+    print(EX2)
+
+def MEDIDAANCHO():  
+    EX3= pd.read_excel("CATAL1.xlsx", usecols=[3], na_values="missing")
+    print(EX3)
+
+def TRAAPL():
+    EX4= pd.read_excel("CATAL1.xlsx", usecols=[4,5,6,7], na_values="missing")
+    print(EX4)
+
+def RANGAN():
+    EX5= pd.read_excel("CATAL1.xlsx", usecols=[8,9], na_values="missing")
+    print(EX5)
+
+def MARAPLI():
+    EX6= pd.read_excel("CATAL1.xlsx", usecols=[10,11,12], na_values="missing")
+    print(EX6)
+def PRETA():
+    EX7= pd.read_excel("CATAL1.xlsx", usecols=[13], na_values="missing")
+    print(EX7)
+def IMATAP():
+    EX8= pd.read_excel("CATAL1.xlsx", usecols=[14], na_values="missing")
+    print(EX8)
+
+def main():
+
+    A=MENU()
+    SELECT=int(input("Ingrese el número de su elección"))
+    while (SELECT<11):
+
+        if SELECT==1:
+            MARCATAPA()
+            break
+        elif SELECT==2:
+            NUMINTERN()
+            break
+        elif SELECT==3:
+            MEDIDALARGO()
+            break
+        elif SELECT==4:
+            MEDIDAANCHO()
+            break
+        elif SELECT==5:
+            TRAAPL()
+            break
+        elif SELECT==6:
+            RANGAN()
+            break
+        elif SELECT==7:
+            MARAPLI()
+            break
+        elif SELECT==8:
+            PRETA()
+            break
+        elif SELECT==9:
+            IMATAP()
+            break
+        elif SELECT==10:
+            break
+    
+main()
