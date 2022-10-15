@@ -1,0 +1,192 @@
+#BORRADORSIETE
+#Primeramente se exportan las librerias que se ocuparan.
+#Ocupamos dos librerias diferentes, por que necesitaremos 
+#dos maneras distintas de exportar nuestro archivo de excel
+#(CATAL1.xlsx), para su uso en las diferentes funciones
+#que ofrece el programa.
+import pandas as pd 
+import openpyxl
+#Aquí abrimos importamos el archivo a python.
+#También definimos las columnas que nos proveera de los datos
+#requeridos para el programa e introducimos los datos del excel en una matriz.  
+book= openpyxl.load_workbook('CATAL1.xlsx',data_only= True)
+hoja=book.active
+celdas= hoja['A1':'O24']
+marli=[]
+for fila in celdas:
+    Marcas=[celdas.value for celdas in fila]
+    marli.append(Marcas)
+
+#Esta función tiene  la dinalidad de mostrarle al usuario 
+#la lista de opciones que puede realizar con este codigo. 
+
+def MENU():
+    print("_Seleccione el número que desea visualisar de nuestro catálogo_")
+    print("______________________________________________________________")
+    print("|1.  | Marcas de las Tapas en Catálogo                       |")
+    print("|2.  | Número internacional de las tapas                     |")
+    print("|3.  | Medida de Largo de la tapa                            |")
+    print("|4.  | Medida de Ancho de la tapa                            |")
+    print("|5.  | Tipo de transporte para el que aplica                 |")
+    print("|6.  | Rango de años del auto, para el cual aplica la tapa   |")
+    print("|7.  | Marca del auto para el que aplica la tapa             |")
+    print("|8.  | Precios de las tapas                                  |")
+    print("|9.  | Imagenes de las tapas                                 |")
+    print("|10. | Salir del programa                                    |")
+    print("--------------------------------------------------------------")
+#Está función recibe la marca y busca esa marca dentro de las existentes
+#en el catálogo, en caso de encontrarla, imprime todos los productos que sean de esa marca.
+def MARCATAPA(MARTAPA,EX): 
+    columna = EX.columns[0]
+    columnas=EX.columns[0:14]
+    for i,row in EX.iterrows():
+        if MARTAPA=="Ven":
+            if row[columna] == "Vengadores":
+                print(row[columna],row[columnas])
+        elif MARTAPA=="Mac":
+            if row[columna]=="Mcallen":
+               print(row[columna],row[columnas])
+        else:
+            print("No manejamos esa marca")
+            break
+#Esta función recibe el número internacional de la tapa de radiador que 
+#que busca el cliente, en caso de que coincida con una tapa dentro de nuestro catálogo
+#la imprime.
+def NUMINTERN(NUMTAPA,EX): 
+    columna = EX.columns[1] 
+    columnas=EX.columns[0:14]
+    for i,row in EX.iterrows():
+        if row[columna] == NUMTAPA:
+            print(row[columna],row[columnas]) 
+
+#Esta función recibe la longitud de la tapa del cliente y busca todos los 
+#productos que coincidan con ese largo.
+def MEDIDALARGO(MEDTAPA,EX):
+    columna = EX.columns[2]
+    columnas=EX.columns[0:14]
+    for i,row in EX.iterrows():
+        if row[columna] == MEDTAPA:
+            print(row[columna],row[columnas])
+
+#Esta función recibe la ancho de la tapa del cliente y busca todos los 
+#productos que coincidan con ese ancho.
+def MEDIDAANCHO(MEDANCH,EX):  
+    columna = EX.columns[3]
+    columnas=EX.columns[0:14]
+    for i,row in EX.iterrows():
+        if row[columna] == MEDANCH:
+            print(row[columna],row[columnas])  
+                 
+#Esta función recibe el tipo de Auto que tiene el cliente y lo compara
+#con el tipo de autos con el que aplican los productos e imprime los 
+#productos.
+def TRAAPL(TRAPL,EX):
+    for i in marli:
+        for j in i[4:8]:
+            if j==TRAPL:
+                for k in i:
+                    print(k, end=' ')
+                print('')
+
+#Esta función recibe el año del carro y lo comprar con el rango de años  de los productos
+# e imprime los que coinciden. 
+def RANGAN(RAN,EX):
+    celdas= hoja['I2':'I20']
+    anioFinal= hoja['J2':'J20']
+    L1=[] 
+    L2=[] 
+    numerosL1=[] 
+    numerosL2=[] 
+
+    for fila in celdas:
+        añoi=[celdas.value for celdas in fila]
+        L1.append(añoi)
+    for fila in anioFinal:
+        añof=[anioFinal.value for anioFinal in fila]
+        L2.append(añof)
+
+    for i in range(len(L1)):
+        numerosL1.append(L1[i][0])
+    for i in range(len(L2)):
+        numerosL2.append(L2[i][0])
+   
+    for j in range(len(numerosL1)):
+        for k in EX.iterrows():
+            if RAN >= numerosL1[j] and RAN <= numerosL2[j]:
+                print(k, end=' ')
+
+#El usuario ingresa la marca de sua auto y las compara con el catálogo 
+#imprime las que coinciden.
+def MARAPLI(PLIT,EX):
+    for i in marli:
+        for j in i[10:13]:
+            if j==PLIT:
+                for k in i:
+                    print(k, end=' ')
+                print('')
+
+#Se imrpimen los productos que coinciden con el presupuesto del usuario.
+def PRETA(PRETAP,EX):
+   for i in marli:
+        for j in i[13:14]:
+            if j==PRETAP:
+                for k in i:
+                    print(k, end=' ')
+                print('')
+#Imprime las imagenes de las tapas.
+def IMATAP():
+    EX8= pd.read_excel("CATAL1.xlsx", usecols=[14], na_values="missing")
+    print(EX8)
+
+
+#Esta función interactua con el usuario 
+def main():
+    EX = pd.read_excel("CATAL1.xlsx")
+# Mando a llamar al menú, después dependiendo si respuesta mando a llamar a una función
+#diferente para cada caso que ofrece el menu.
+    MENU()
+    a= 270+300+270+300+270+400+270+270+500+270+270+300+270+280+270
+    print("El valor monetario (en pesos mexicanos) total que contiene nuestro catálogo es de", a)
+
+    SELECT=int(input("Ingrese el número de su elección"))
+    while SELECT<10:
+        
+
+        if SELECT==1:
+            MARTAPA=input("Ingrese si desea ver tapas de marca Vengadores'Ven' o Mcallen'Mac': ")
+            MARCATAPA(MARTAPA,EX)
+            break
+        elif SELECT==2:
+            NUMTAPA=input("Ingrese el número internacional de la tapa que desea ver (ejem:325-694) ")
+            NUMINTERN(NUMTAPA,EX)
+            break
+        elif SELECT==3:
+            MEDTAPA=int(input("Ingrese la longuitud en cm de la tapa que busca (ejem: 25)"))
+            MEDIDALARGO(MEDTAPA,EX)
+            break
+        elif SELECT==4:
+            MEDANCH=int(input("Ingrese la longuitud en cm de la tapa que busca (ejem: 25)"))
+            MEDIDAANCHO(MEDANCH,EX)
+            break
+        elif SELECT==5:
+            TRAPL=input("ingrese el tipo de automovil para el cual desea la usar la tapa:  ")
+            TRAAPL(TRAPL,EX)
+            break
+        elif SELECT==6:
+            RAN=int(input("Ingrese el año de su auto:  "))
+            RANGAN(RAN,EX)
+            break
+        elif SELECT==7:
+            PLIT=input("Ingrese la marca de su auto(EJEM: BMW): ")
+            MARAPLI(PLIT,EX)
+            break
+        elif SELECT==8:
+            PRETAP=input("ingrese el presupuesto en pesos mexicanos que un desea:   ")
+            PRETA(PRETAP,EX)
+            break
+        elif SELECT==9:
+            IMATAP()
+            break
+        elif SELECT==10:
+            break
+main()
